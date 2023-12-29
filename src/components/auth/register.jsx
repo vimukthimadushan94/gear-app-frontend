@@ -1,14 +1,29 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Register() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {};
+  const [loading, setLoding] = useState(false);
+
+  const onSubmit = async (data) => {
+    setLoding(true);
+    const response = await fetch(`http://localhost:8080/api/user/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      setLoding(false);
+    }
+  };
 
   return (
     <>
@@ -38,11 +53,7 @@ export default function Register() {
                       />
                     </a>
                     <p className="text-center">Gear App</p>
-                    <form
-                      onSubmit={handleSubmit(onSubmit)}
-                      method="post"
-                      action="/register"
-                    >
+                    <form onSubmit={handleSubmit(onSubmit)}>
                       <div className="mb-3">
                         <label className="form-label">First Name</label>
                         <input
@@ -65,7 +76,7 @@ export default function Register() {
                             required: "Last name is required",
                           })}
                         />
-                        {errors.first_name && (
+                        {errors.last_name && (
                           <span style={{ color: "red" }}>
                             Last name is required
                           </span>
@@ -79,7 +90,7 @@ export default function Register() {
                             required: "Name is required",
                           })}
                         />
-                        {errors.first_name && (
+                        {errors.email && (
                           <span style={{ color: "red" }}>
                             Email field is required
                           </span>
@@ -100,7 +111,7 @@ export default function Register() {
                           className="form-control"
                           {...register("password")}
                         />
-                        {errors.first_name && (
+                        {errors.password && (
                           <span style={{ color: "red" }}>
                             Password field is required
                           </span>
@@ -110,8 +121,9 @@ export default function Register() {
                       <button
                         type="submit"
                         className="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2"
+                        disabled={loading}
                       >
-                        Sign Up
+                        {loading === true ? "Please Wait.." : "Sign Up"}
                       </button>
                     </form>
                   </div>
