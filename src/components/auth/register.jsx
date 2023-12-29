@@ -1,4 +1,15 @@
-export function Register() {
+import { useForm } from "react-hook-form";
+
+export default function Register() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {};
+
   return (
     <>
       <div
@@ -26,60 +37,82 @@ export function Register() {
                         alt=""
                       />
                     </a>
-                    <p className="text-center">Your Social Campaigns</p>
-                    <form>
+                    <p className="text-center">Gear App</p>
+                    <form
+                      onSubmit={handleSubmit(onSubmit)}
+                      method="post"
+                      action="/register"
+                    >
                       <div className="mb-3">
-                        <label for="exampleInputtext1" className="form-label">
-                          Name
-                        </label>
+                        <label className="form-label">First Name</label>
                         <input
-                          type="text"
                           className="form-control"
-                          id="exampleInputtext1"
-                          aria-describedby="textHelp"
+                          {...register("first_name", {
+                            required: "First name is required",
+                          })}
                         />
+                        {errors.first_name && (
+                          <span style={{ color: "red" }}>
+                            First name is required
+                          </span>
+                        )}
                       </div>
                       <div className="mb-3">
-                        <label for="exampleInputEmail1" className="form-label">
-                          Email Address
-                        </label>
+                        <label className="form-label">Last Name</label>
                         <input
-                          type="email"
                           className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
+                          {...register("last_name", {
+                            required: "Last name is required",
+                          })}
+                        />
+                        {errors.first_name && (
+                          <span style={{ color: "red" }}>
+                            Last name is required
+                          </span>
+                        )}
+                      </div>
+                      <div className="mb-3">
+                        <label className="form-label">Email Address</label>
+                        <input
+                          className="form-control"
+                          {...register("email", {
+                            required: "Name is required",
+                          })}
+                        />
+                        {errors.first_name && (
+                          <span style={{ color: "red" }}>
+                            Email field is required
+                          </span>
+                        )}
+                      </div>
+                      <div className="mb-3">
+                        <label className="form-label">Age</label>
+                        <input
+                          className="form-control"
+                          type="number"
+                          {...register("age")}
                         />
                       </div>
                       <div className="mb-4">
-                        <label
-                          for="exampleInputPassword1"
-                          className="form-label"
-                        >
-                          Password
-                        </label>
+                        <label className="form-label">Password</label>
                         <input
                           type="password"
                           className="form-control"
-                          id="exampleInputPassword1"
+                          {...register("password")}
                         />
+                        {errors.first_name && (
+                          <span style={{ color: "red" }}>
+                            Password field is required
+                          </span>
+                        )}
                       </div>
-                      <a
-                        href="./index.html"
+
+                      <button
+                        type="submit"
                         className="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2"
                       >
                         Sign Up
-                      </a>
-                      <div className="d-flex align-items-center justify-content-center">
-                        <p className="fs-4 mb-0 fw-bold">
-                          Already have an Account?
-                        </p>
-                        <a
-                          className="text-primary fw-bold ms-2"
-                          href="./authentication-login.html"
-                        >
-                          Sign In
-                        </a>
-                      </div>
+                      </button>
                     </form>
                   </div>
                 </div>
