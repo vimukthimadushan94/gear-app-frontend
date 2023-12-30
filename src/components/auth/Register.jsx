@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Register() {
   const {
@@ -8,20 +10,50 @@ export default function Register() {
     formState: { errors },
   } = useForm();
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
+
+  const navigate = useNavigate();
   const [loading, setLoding] = useState(false);
 
   const onSubmit = async (data) => {
-    setLoding(true);
-    const response = await fetch(`http://localhost:8080/api/user/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      setLoding(true);
+      const response = await fetch(`http://localhost:8080/api/user/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    if (response.ok) {
+      if (response.ok) {
+        setLoding(false);
+        console.log("submitted");
+
+        Toast.fire({
+          icon: "success",
+          title: "You have registred successfully",
+        });
+        return navigate("/login");
+      } else {
+        throw new Error({ message: "something went wrong" });
+      }
+    } catch (e) {
       setLoding(false);
+      Toast.fire({
+        icon: "error",
+        title: "Something went wrong. Please try again",
+      });
     }
   };
 
