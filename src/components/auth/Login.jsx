@@ -1,6 +1,30 @@
+import { useForm } from "react-hook-form";
 import logo from "../../assets/images/logos/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { userLogin } from "../../features/auth/authActions";
 
 export default function Login() {
+  const { loading, userInfo } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]);
+
+  const submitForm = (data) => {
+    dispatch(userLogin(data));
+  };
+
   return (
     <div
       className="page-wrapper"
@@ -24,15 +48,20 @@ export default function Login() {
                     <img src={logo} width="180" alt="" />
                   </a>
                   <p className="text-center">Welcome to Gear</p>
-                  <form>
+                  <form onSubmit={handleSubmit(submitForm)}>
                     <div className="mb-3">
-                      <label className="form-label">Username</label>
+                      <label className="form-label">Email</label>
                       <input
                         type="email"
                         className="form-control"
-                        id="exampleInputEmail1"
                         aria-describedby="emailHelp"
+                        {...register("email")}
                       />
+                      {errors.email && (
+                        <span style={{ color: "red" }}>
+                          Email field is required
+                        </span>
+                      )}
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Password</label>
@@ -40,7 +69,13 @@ export default function Login() {
                         type="password"
                         className="form-control"
                         id="exampleInputPassword1"
+                        {...register("password")}
                       />
+                      {errors.password && (
+                        <span style={{ color: "red" }}>
+                          Password field is required
+                        </span>
+                      )}
                     </div>
                     <div className="d-flex align-items-center justify-content-between mb-4">
                       <div className="form-check">
@@ -59,12 +94,15 @@ export default function Login() {
                         Forgot Password ?
                       </a>
                     </div>
-                    <a
-                      href="./index.html"
-                      className="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2"
-                    >
-                      Sign In
-                    </a>
+                    <button className="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">
+                      {loading ? (
+                        <div className="spinner-border m-5" role="status">
+                          <span className="sr-only">Loading...</span>
+                        </div>
+                      ) : (
+                        "Sign In"
+                      )}
+                    </button>
                     <div className="d-flex align-items-center justify-content-center">
                       <p className="fs-4 mb-0 fw-bold">New to Modernize?</p>
                       <a

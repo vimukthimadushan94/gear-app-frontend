@@ -2,6 +2,7 @@ import React from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import ReactDOM from "react-dom/client";
 import "./assets/css/styles.min.css";
+import { Provider } from "react-redux";
 import {
   Route,
   RouterProvider,
@@ -11,6 +12,7 @@ import {
 import { AuthLayout } from "./components/layout/authLayout";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import { store } from "./store/store";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,4 +24,8 @@ const router = createBrowserRouter(
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={router} />);
+root.render(
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+);
