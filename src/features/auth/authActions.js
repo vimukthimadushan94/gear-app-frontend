@@ -12,15 +12,15 @@ export const userLogin = createAsyncThunk(
         },
       };
 
-      const data = await axios.post(
+      const response = await axios.post(
         `http://localhost:8080/auth/login`,
         { email, password },
         config
       );
 
       // store user's token in local storage
-      localStorage.setItem("userToken", data.access_token);
-      return data;
+      localStorage.setItem("userToken", response.data.access_token);
+      return response.data;
     } catch (error) {
       // return custom error message from API if any
       if (error.response && error.response.data.message) {
