@@ -13,13 +13,19 @@ import { AuthLayout } from "./components/layout/authLayout";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import { store } from "./store/store";
+import MyProfile from "./components/profile/MyProfile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<AuthLayout />} path="/">
-      <Route element={<Register />} path="register" />
-      <Route element={<Login />} path="login" />
-    </Route>
+    <>
+      <Route element={<AuthLayout />} path="/">
+        <Route element={<Register />} path="/register" />
+        <Route element={<Login />} path="/" />
+      </Route>
+      <Route>
+        <Route element={<MyProfile />} path="/profile" />
+      </Route>
+    </>
   )
 );
 

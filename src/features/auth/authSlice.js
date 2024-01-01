@@ -6,6 +6,7 @@ const userToken = localStorage.getItem("userToken")
   : null;
 
 const initialState = {
+  errorMessage: null,
   loading: false,
   userInfo: null,
   userToken,
@@ -19,7 +20,7 @@ const authSlice = createSlice({
     builder
       .addCase(userLogin.pending, (state, action) => {
         state.loading = true;
-        state.error = null;
+        state.errorMessage = null;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
         state.loading = false;
@@ -27,8 +28,9 @@ const authSlice = createSlice({
         state.userToken = action.payload.access_token;
       })
       .addCase(userLogin.rejected, (state, action) => {
+        console.log(action.payload);
         state.loading = false;
-        state.error = action.payload;
+        state.errorMessage = action.payload;
       });
   },
 });

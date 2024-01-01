@@ -6,18 +6,23 @@ import { useEffect } from "react";
 import { userLogin } from "../../features/auth/authActions";
 
 export default function Login() {
-  const { loading, userInfo } = useSelector((state) => state.auth);
+  const { loading, userInfo, errorMessage } = useSelector(
+    (state) => state.auth
+  );
+
   const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      navigate("/profile");
     }
   }, [navigate, userInfo]);
 
@@ -41,6 +46,13 @@ export default function Login() {
             <div className="col-md-8 col-lg-6 col-xxl-3">
               <div className="card mb-0">
                 <div className="card-body">
+                  {errorMessage ? (
+                    <div class="alert alert-danger" role="alert">
+                      {errorMessage}
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   <a
                     href="./index.html"
                     className="text-nowrap logo-img text-center d-block py-3 w-100"
@@ -78,30 +90,12 @@ export default function Login() {
                       )}
                     </div>
                     <div className="d-flex align-items-center justify-content-between mb-4">
-                      <div className="form-check">
-                        <input
-                          className="form-check-input primary"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckChecked"
-                          checked
-                        />
-                        <label className="form-check-label text-dark">
-                          Remeber this Device
-                        </label>
-                      </div>
                       <a className="text-primary fw-bold" href="./index.html">
                         Forgot Password ?
                       </a>
                     </div>
                     <button className="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">
-                      {loading ? (
-                        <div className="spinner-border m-5" role="status">
-                          <span className="sr-only">Loading...</span>
-                        </div>
-                      ) : (
-                        "Sign In"
-                      )}
+                      {loading ? "Please Wait.." : "Sign In"}
                     </button>
                     <div className="d-flex align-items-center justify-content-center">
                       <p className="fs-4 mb-0 fw-bold">New to Modernize?</p>
