@@ -8,12 +8,14 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
+  // Routes,
 } from "react-router-dom";
 import { AuthLayout } from "./components/layout/authLayout";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import { store } from "./store/store";
 import MyProfile from "./components/profile/MyProfile";
+import ProtectedRoute from "./components/utils/ProtectedRoute";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,7 +25,9 @@ const router = createBrowserRouter(
         <Route element={<Login />} path="/" />
       </Route>
       <Route>
-        <Route element={<MyProfile />} path="/profile" />
+        <Route element={<ProtectedRoute />}>
+          <Route element={<MyProfile />} path="/profile" />
+        </Route>
       </Route>
     </>
   )
