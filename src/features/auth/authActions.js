@@ -31,3 +31,22 @@ export const userLogin = createAsyncThunk(
     }
   }
 );
+
+export const updateAvatar = createAsyncThunk(
+  "auth/avatarUpdate",
+  async (url, { rejectWithValue }) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await axios.post(
+      `http://localhost:8080/api/user/update-avatar`,
+      { avatar: url },
+      config
+    );
+    return response;
+  }
+);

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/logos/logo.png";
+// import logo from "../../assets/images/logos/logo.png";
+import { useSelector } from "react-redux";
 
 export function Header() {
+  const { avatarUrl } = useSelector((state) => state.auth);
   return (
     <header className="app-header">
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -23,13 +25,6 @@ export function Header() {
           id="navbarNav"
         >
           <ul className="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-            <Link
-              href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/"
-              target="_blank"
-              className="btn btn-primary"
-            >
-              Download Free
-            </Link>
             <li className="nav-item dropdown">
               <Link
                 className="nav-link nav-icon-hover"
@@ -39,7 +34,7 @@ export function Header() {
                 aria-expanded="false"
               >
                 <img
-                  src={logo}
+                  src={avatarUrl}
                   alt=""
                   width="35"
                   height="35"

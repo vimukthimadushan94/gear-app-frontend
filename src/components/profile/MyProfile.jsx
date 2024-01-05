@@ -1,26 +1,30 @@
+import FileUploader from "../utils/FileUploader";
+
 export default function MyProfile() {
   return (
     <div class="container-fluid">
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Forms</h5>
+            <h5 class="card-title fw-semibold mb-4">Profile Update</h5>
             <div class="card">
               <div class="card-body">
                 <form>
+                  <FileUploader />
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">
-                      Email address
-                    </label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                    />
-                    <div id="emailHelp" class="form-text">
-                      We'll never share your email with anyone else.
-                    </div>
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-control" />
+                    <div class="form-text">First name is required</div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control" />
+                    <div class="form-text">Last name is required</div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Age</label>
+                    <input type="number" class="form-control" />
+                    <div class="form-text">Age is required</div>
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">
@@ -32,67 +36,9 @@ export default function MyProfile() {
                       id="exampleInputPassword1"
                     />
                   </div>
-                  <div class="mb-3 form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="exampleCheck1"
-                    />
-                    <label class="form-check-label" for="exampleCheck1">
-                      Check me out
-                    </label>
-                  </div>
                   <button type="submit" class="btn btn-primary">
                     Submit
                   </button>
-                </form>
-              </div>
-            </div>
-            <h5 class="card-title fw-semibold mb-4">Disabled forms</h5>
-            <div class="card mb-0">
-              <div class="card-body">
-                <form>
-                  <fieldset disabled>
-                    <legend>Disabled fieldset example</legend>
-                    <div class="mb-3">
-                      <label for="disabledTextInput" class="form-label">
-                        Disabled input
-                      </label>
-                      <input
-                        type="text"
-                        id="disabledTextInput"
-                        class="form-control"
-                        placeholder="Disabled input"
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label for="disabledSelect" class="form-label">
-                        Disabled select menu
-                      </label>
-                      <select id="disabledSelect" class="form-select">
-                        <option>Disabled select</option>
-                      </select>
-                    </div>
-                    <div class="mb-3">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="disabledFieldsetCheck"
-                          disabled
-                        />
-                        <label
-                          class="form-check-label"
-                          for="disabledFieldsetCheck"
-                        >
-                          Can't check this
-                        </label>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                      Submit
-                    </button>
-                  </fieldset>
                 </form>
               </div>
             </div>

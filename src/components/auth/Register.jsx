@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function Register() {
@@ -157,6 +157,14 @@ export default function Register() {
                       >
                         {loading === true ? "Please Wait.." : "Sign Up"}
                       </button>
+                      <div class="d-flex align-items-center justify-content-center">
+                        <p class="fs-4 mb-0 fw-bold">
+                          Already have an Account?
+                        </p>
+                        <Link class="text-primary fw-bold ms-2" to={"/"}>
+                          Sign In
+                        </Link>
+                      </div>
                     </form>
                   </div>
                 </div>

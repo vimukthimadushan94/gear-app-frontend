@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import logo from "../../assets/images/logos/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { userLogin } from "../../features/auth/authActions";
 
@@ -98,13 +98,13 @@ export default function Login() {
                       {loading ? "Please Wait.." : "Sign In"}
                     </button>
                     <div className="d-flex align-items-center justify-content-center">
-                      <p className="fs-4 mb-0 fw-bold">New to Modernize?</p>
-                      <a
+                      <p className="fs-4 mb-0 fw-bold">New to Gear?</p>
+                      <Link
                         className="text-primary fw-bold ms-2"
-                        href="./authentication-register.html"
+                        to={"/register"}
                       >
                         Create an account
-                      </a>
+                      </Link>
                     </div>
                   </form>
                 </div>
