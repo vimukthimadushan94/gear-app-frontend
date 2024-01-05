@@ -29,8 +29,8 @@ export default function FileUploader() {
         console.log("onComplete");
         files.map((x) => onUpdateAvatar(x.fileUrl));
       }}
-      width="600px"
-      height="200px"
+      width="500px"
+      height="300px"
     />
   );
 }

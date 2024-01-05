@@ -50,3 +50,23 @@ export const updateAvatar = createAsyncThunk(
     return response;
   }
 );
+
+export const getAuthUser = createAsyncThunk("auth/getAuthUser", async () => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await axios.get(
+      `http://localhost:8080/api/user/profile`,
+      config
+    );
+    return response;
+  } catch (error) {
+    // return custom error message from API if any
+    console.log("error");
+  }
+});

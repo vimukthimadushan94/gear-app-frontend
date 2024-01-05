@@ -3,31 +3,31 @@ import logo from "../../assets/images/logos/logo.png";
 
 export default function SideBar() {
   return (
-    <aside class="left-sidebar">
+    <aside className="left-sidebar">
       <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-          <Link href="./index.html" class="text-nowrap logo-img">
+        <div className="brand-logo d-flex align-items-center justify-content-between">
+          <Link href="./index.html" className="text-nowrap logo-img">
             <img src={logo} width="180" alt="" style={{ width: "45%" }} />
           </Link>
           <div
-            class="close-btn d-xl-none d-block sidebartoggler cursor-pointer"
+            className="close-btn d-xl-none d-block sidebartoggler cursor-pointer"
             id="sidebarCollapse"
           >
-            <i class="ti ti-x fs-8"></i>
+            <i className="ti ti-x fs-8"></i>
           </div>
         </div>
-        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+        <nav className="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Home</span>
+            <li className="nav-small-cap">
+              <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span className="hide-menu">Home</span>
             </li>
-            <li class="sidebar-item">
-              <Link class="sidebar-link" aria-expanded="false">
+            <li className="sidebar-item">
+              <Link className="sidebar-link" aria-expanded="false">
                 <span>
-                  <i class="ti ti-layout-dashboard"></i>
+                  <i className="ti ti-layout-dashboard"></i>
                 </span>
-                <span class="hide-menu">Dashboard</span>
+                <span className="hide-menu">Dashboard</span>
               </Link>
             </li>
           </ul>

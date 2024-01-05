@@ -47,7 +47,7 @@ export default function Login() {
               <div className="card mb-0">
                 <div className="card-body">
                   {errorMessage ? (
-                    <div class="alert alert-danger" role="alert">
+                    <div className="alert alert-danger" role="alert">
                       {errorMessage}
                     </div>
                   ) : (

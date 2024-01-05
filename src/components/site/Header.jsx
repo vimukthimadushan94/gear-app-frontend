@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
-// import logo from "../../assets/images/logos/logo.png";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthUser } from "../../features/auth/authActions";
 
 export function Header() {
   const { avatarUrl } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAuthUser());
+  }, [dispatch]);
+
   return (
     <header className="app-header">
       <nav className="navbar navbar-expand-lg navbar-light">

@@ -1,42 +1,61 @@
 import FileUploader from "../utils/FileUploader";
+import { useSelector } from "react-redux";
 
 export default function MyProfile() {
+  const { avatarUrl } = useSelector((state) => state.auth);
+
   return (
-    <div class="container-fluid">
-      <div class="container-fluid">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Profile Update</h5>
-            <div class="card">
-              <div class="card-body">
+    <div className="container-fluid">
+      <div className="container-fluid">
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title fw-semibold mb-4">Profile Update</h5>
+            <div className="card">
+              <div className="card-body">
+                <div className="row">
+                  <div className="col-md-4">
+                    {avatarUrl ? (
+                      <img
+                        src={avatarUrl}
+                        alt=""
+                        width="195"
+                        height="195"
+                        className="rounded-circle"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="col-md-8">
+                    <FileUploader />
+                  </div>
+                </div>
+
                 <form>
-                  <FileUploader />
-                  <div class="mb-3">
-                    <label class="form-label">First Name</label>
-                    <input type="text" class="form-control" />
-                    <div class="form-text">First name is required</div>
+                  <div className="mb-3">
+                    <label className="form-label">First Name</label>
+                    <input type="text" className="form-control" />
+                    <div className="form-text">First name is required</div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Last Name</label>
-                    <input type="text" class="form-control" />
-                    <div class="form-text">Last name is required</div>
+                  <div className="mb-3">
+                    <label className="form-label">Last Name</label>
+                    <input type="text" className="form-control" />
+                    <div className="form-text">Last name is required</div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Age</label>
-                    <input type="number" class="form-control" />
-                    <div class="form-text">Age is required</div>
+                  <div className="mb-3">
+                    <label className="form-label">Age</label>
+                    <input type="number" className="form-control" />
+                    <div className="form-text">Age is required</div>
                   </div>
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">
-                      Password
-                    </label>
+                  <div className="mb-3">
+                    <label className="form-label">Password</label>
                     <input
                       type="password"
-                      class="form-control"
+                      className="form-control"
                       id="exampleInputPassword1"
                     />
                   </div>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="submit" className="btn btn-primary">
                     Submit
                   </button>
                 </form>

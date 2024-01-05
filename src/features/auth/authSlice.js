@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { updateAvatar, userLogin } from "./authActions";
+import { getAuthUser, updateAvatar, userLogin } from "./authActions";
 
 const userToken = localStorage.getItem("userToken")
   ? localStorage.getItem("userToken")
@@ -29,7 +29,6 @@ const authSlice = createSlice({
         state.userToken = action.payload.access_token;
       })
       .addCase(userLogin.rejected, (state, action) => {
-        console.log(action.payload);
         state.loading = false;
         state.errorMessage = action.payload;
       })
@@ -42,6 +41,18 @@ const authSlice = createSlice({
         state.avatarUrl = action.payload.data.avatar;
       })
       .addCase(updateAvatar.rejected, (state, action) => {
+        state.loading = false;
+        state.errorMessage = action.payload;
+      })
+      .addCase(getAuthUser.pending, (state, action) => {
+        state.loading = true;
+        state.errorMessage = null;
+      })
+      .addCase(getAuthUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.avatarUrl = action.payload.data.avatar;
+      })
+      .addCase(getAuthUser.rejected, (state, action) => {
         state.loading = false;
         state.errorMessage = action.payload;
       });

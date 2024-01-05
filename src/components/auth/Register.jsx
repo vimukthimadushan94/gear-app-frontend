@@ -157,11 +157,11 @@ export default function Register() {
                       >
                         {loading === true ? "Please Wait.." : "Sign Up"}
                       </button>
-                      <div class="d-flex align-items-center justify-content-center">
-                        <p class="fs-4 mb-0 fw-bold">
+                      <div className="d-flex align-items-center justify-content-center">
+                        <p className="fs-4 mb-0 fw-bold">
                           Already have an Account?
                         </p>
-                        <Link class="text-primary fw-bold ms-2" to={"/"}>
+                        <Link className="text-primary fw-bold ms-2" to={"/"}>
                           Sign In
                         </Link>
                       </div>
