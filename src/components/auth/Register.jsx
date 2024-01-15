@@ -44,7 +44,7 @@ export default function Register() {
           icon: "success",
           title: "You have registred successfully",
         });
-        return navigate("/login");
+        return navigate("/");
       } else {
         throw new Error({ message: "something went wrong" });
       }

@@ -27,7 +27,9 @@ export default function SideBar() {
                 <span>
                   <i className="ti ti-layout-dashboard"></i>
                 </span>
-                <span className="hide-menu">Dashboard</span>
+                <span className="hide-menu">
+                  <Link to={"/post/create"}>Create Post</Link>
+                </span>
               </Link>
             </li>
           </ul>

@@ -1,15 +1,8 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAuthUser } from "../../features/auth/authActions";
+import { useSelector } from "react-redux";
 
 export function Header() {
   const { avatarUrl } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAuthUser());
-  }, [dispatch]);
 
   return (
     <header className="app-header">

@@ -3,7 +3,7 @@ import logo from "../../assets/images/logos/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { userLogin } from "../../features/auth/authActions";
+import { getAuthUser, userLogin } from "../../features/auth/authActions";
 
 export default function Login() {
   const { loading, userInfo, errorMessage } = useSelector(
@@ -21,10 +21,11 @@ export default function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    dispatch(getAuthUser());
     if (userInfo) {
       navigate("/profile");
     }
-  }, [navigate, userInfo]);
+  }, [dispatch, navigate, userInfo]);
 
   const submitForm = (data) => {
     dispatch(userLogin(data));

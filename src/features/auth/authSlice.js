@@ -47,14 +47,17 @@ const authSlice = createSlice({
       .addCase(getAuthUser.pending, (state, action) => {
         state.loading = true;
         state.errorMessage = null;
+        state.userInfo = false;
       })
       .addCase(getAuthUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.avatarUrl = action.payload.data.avatar;
+        state.avatarUrl = action.payload.avatar;
+        state.userInfo = action.payload;
       })
       .addCase(getAuthUser.rejected, (state, action) => {
         state.loading = false;
         state.errorMessage = action.payload;
+        state.userInfo = false;
       });
   },
 });

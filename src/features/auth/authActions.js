@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 export const userLogin = createAsyncThunk(
   "auth/login",
@@ -64,9 +64,11 @@ export const getAuthUser = createAsyncThunk("auth/getAuthUser", async () => {
       `http://localhost:8080/api/user/profile`,
       config
     );
-    return response;
+
+    return response.data;
   } catch (error) {
     // return custom error message from API if any
-    console.log("error");
+    console.log(error);
+    throw new AxiosError();
   }
 });

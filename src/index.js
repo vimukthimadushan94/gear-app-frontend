@@ -16,6 +16,7 @@ import Login from "./components/auth/Login";
 import { store } from "./store/store";
 import MyProfile from "./components/profile/MyProfile";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
+import CreatePost from "./components/post/CreatePost";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route>
         <Route element={<ProtectedRoute />}>
           <Route element={<MyProfile />} path="/profile" />
+          <Route element={<CreatePost />} path="/post/create" />
         </Route>
       </Route>
     </>
