@@ -17,6 +17,7 @@ import { store } from "./store/store";
 import MyProfile from "./components/profile/MyProfile";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
 import CreatePost from "./components/post/CreatePost";
+import AddPostMedia from "./components/post/AddPostMedia";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
         <Route element={<ProtectedRoute />}>
           <Route element={<MyProfile />} path="/profile" />
           <Route element={<CreatePost />} path="/post/create" />
+          <Route element={<AddPostMedia />} path="/add-media/:postId" />
         </Route>
       </Route>
     </>
