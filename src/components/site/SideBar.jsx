@@ -23,13 +23,35 @@ export default function SideBar() {
               <span className="hide-menu">Home</span>
             </li>
             <li className="sidebar-item">
-              <Link className="sidebar-link" aria-expanded="false">
+              <Link
+                to={"/profile"}
+                className="sidebar-link"
+                aria-expanded="false"
+              >
                 <span>
                   <i className="ti ti-layout-dashboard"></i>
                 </span>
-                <span className="hide-menu">
-                  <Link to={"/post/create"}>Create Post</Link>
+                <span className="hide-menu">Profile</span>
+              </Link>
+            </li>
+            <li className="sidebar-item">
+              <Link
+                to={"/post/create"}
+                className="sidebar-link"
+                aria-expanded="false"
+              >
+                <span>
+                  <i className="ti ti-layout-dashboard"></i>
                 </span>
+                <span className="hide-menu">Create Post</span>
+              </Link>
+            </li>
+            <li className="sidebar-item">
+              <Link to={"/feed"} className="sidebar-link" aria-expanded="false">
+                <span>
+                  <i className="ti ti-layout-dashboard"></i>
+                </span>
+                <span className="hide-menu">Feed</span>
               </Link>
             </li>
           </ul>

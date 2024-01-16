@@ -1,26 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 import { Header } from "../site/Header";
 import SideBar from "../site/SideBar";
-import { useEffect } from "react";
+import { getAuthUser } from "../../features/auth/authActions";
 
 const ProtectedRoute = ({ children }) => {
-  const { userToken, userInfo, loading } = useSelector((state) => state.auth);
+  const { userToken } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {}, [dispatch, userInfo]);
+  useEffect(() => {
+    dispatch(getAuthUser());
+  }, [dispatch]);
 
-  let isAuthrized = false;
-  if (userToken && userInfo) {
-    isAuthrized = true;
-  }
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  return isAuthrized ? (
+  return userToken ? (
     <>
       <div
         class="page-wrapper"
@@ -39,7 +33,7 @@ const ProtectedRoute = ({ children }) => {
       </div>
     </>
   ) : (
-    <Navigate to="/" />
+    <Navigate to="/register" />
   );
 };
 

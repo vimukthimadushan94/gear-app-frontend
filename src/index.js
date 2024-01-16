@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import ReactDOM from "react-dom/client";
 import "./assets/css/styles.min.css";
@@ -18,6 +18,7 @@ import MyProfile from "./components/profile/MyProfile";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
 import CreatePost from "./components/post/CreatePost";
 import AddPostMedia from "./components/post/AddPostMedia";
+import Feed from "./components/post/Feed";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
           <Route element={<MyProfile />} path="/profile" />
           <Route element={<CreatePost />} path="/post/create" />
           <Route element={<AddPostMedia />} path="/add-media/:postId" />
+          <Route element={<Feed />} path="/feed" />
         </Route>
       </Route>
     </>
@@ -39,7 +41,9 @@ const router = createBrowserRouter(
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>
+  <StrictMode>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </StrictMode>
 );
