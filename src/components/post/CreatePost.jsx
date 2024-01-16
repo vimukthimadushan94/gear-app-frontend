@@ -28,16 +28,7 @@ export default function CreatePost() {
       if (response.ok) {
         setLoding(false);
         const newPost = await response.json();
-
-        if ((data.mode = "ADD_MEDIA")) {
-          return navigate(`/add-media/${newPost._id}`);
-        } else {
-          Toast.fire({
-            icon: "success",
-            title: "You have published post successfully",
-          });
-          return navigate("/");
-        }
+        return navigate(`/add-media/${newPost._id}`);
       } else {
         throw new Error({ message: "something went wrong" });
       }
@@ -75,19 +66,12 @@ export default function CreatePost() {
                       )}
                     </div>
                   </div>
-                  <button type="submit" className="btn btn-primary">
-                    {loading === true ? "Please Wait.." : "Publish"}
-                  </button>
                   <button
                     type="submit"
                     className="btn btn-primary ml-2"
                     style={{ "margin-left": "1%" }}
-                    value="ADD_MEDIA"
-                    {...register("mode")}
                   >
-                    {loading === true
-                      ? "Please Wait.."
-                      : "Add media and publish"}
+                    {loading === true ? "Please Wait.." : "Add media"}
                   </button>
                 </form>
               </div>

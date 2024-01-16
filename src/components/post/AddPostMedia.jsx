@@ -57,9 +57,7 @@ export default function AddPostMedia() {
       <div className="container-fluid">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title fw-semibold mb-4">
-              Add media to post {postId}
-            </h5>
+            <h5 className="card-title fw-semibold mb-4">Add media to post</h5>
             <div className="card">
               <div className="card-body">
                 <form onSubmit={handleSubmit(onUploadImages)}>
