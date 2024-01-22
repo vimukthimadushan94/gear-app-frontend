@@ -2,6 +2,10 @@ import { useEffect } from "react";
 import RightBar from "../site/RightBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../features/feed/feedsActions";
+import like from "./../../assets/images/feed/thumb-up.png";
+// import likeFiled from "./../../assets/images/feed/thumb-up-filled.png";
+import comment from "./../../assets/images/feed/comment.png";
+import share from "./../../assets/images/feed/share.png";
 
 export default function Feed() {
   const { posts } = useSelector((state) => state.feed);
@@ -53,6 +57,72 @@ export default function Feed() {
                           />
                         </div>
                       ))}
+                    </div>
+                  </div>
+                  <div className="p-2">
+                    <hr />
+                    <div
+                      className="container row mx-auto"
+                      style={{ maxHeight: "30px" }}
+                    >
+                      <div className="col-md-4">
+                        <button
+                          type="button"
+                          className="btn btn-light"
+                          style={{ width: "170px" }}
+                        >
+                          <img
+                            src={like}
+                            alt="..."
+                            className="img-fluid mx-auto d-block"
+                            style={{ maxHeight: "24px" }}
+                          />
+                        </button>
+                      </div>
+                      <div className="col-md-4">
+                        <button
+                          type="button"
+                          className="btn btn-light"
+                          style={{ width: "170px" }}
+                        >
+                          <img
+                            src={comment}
+                            style={{ maxHeight: "24px" }}
+                            alt="..."
+                            className="img-fluid mx-auto d-block"
+                          />
+                        </button>
+                      </div>
+                      <div className="col-md-4">
+                        <button
+                          type="button"
+                          className="btn btn-light"
+                          style={{ width: "170px" }}
+                        >
+                          <img
+                            src={share}
+                            style={{ maxHeight: "24px" }}
+                            alt="..."
+                            className="img-fluid mx-auto d-block"
+                          />
+                        </button>
+                      </div>
+                    </div>
+                    <hr />
+                    <div className="p-2 row">
+                      <div className="col-md-2">
+                        <img
+                          src={post.user.avatar}
+                          alt=""
+                          width="45"
+                          height="45"
+                          className="rounded-circle"
+                          style={{ "margin-right": "3%" }}
+                        />
+                      </div>
+                      <div className="col-md-9">
+                        <input type="text" className="form-control" />
+                      </div>
                     </div>
                   </div>
                 </div>
