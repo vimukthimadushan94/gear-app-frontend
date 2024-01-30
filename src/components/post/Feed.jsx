@@ -6,6 +6,7 @@ import like from "./../../assets/images/feed/thumb-up.png";
 import unlike from "./../../assets/images/feed/thumb-up-filled.png";
 import comment from "./../../assets/images/feed/comment.png";
 import share from "./../../assets/images/feed/share.png";
+import { postLike, postUnlike } from "./utils/postFunctions";
 
 export default function Feed() {
   const { posts } = useSelector((state) => state.feed);
@@ -14,16 +15,7 @@ export default function Feed() {
 
   async function handleLike(post) {
     console.log("liked..");
-    const response = await fetch(
-      `http://localhost:8080/api/posts/like/${post._id}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await postLike(post);
 
     if (response.ok) {
       const newPost = await response.json();
@@ -40,16 +32,7 @@ export default function Feed() {
 
   async function handleUnlike(post) {
     console.log("Unliked..");
-    const response = await fetch(
-      `http://localhost:8080/api/posts/unlike/${post._id}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await postUnlike(post);
 
     if (response.ok) {
       const newPost = await response.json();
