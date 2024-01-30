@@ -7,6 +7,7 @@ import unlike from "./../../assets/images/feed/thumb-up-filled.png";
 import comment from "./../../assets/images/feed/comment.png";
 import share from "./../../assets/images/feed/share.png";
 import { postLike, postUnlike } from "./utils/postFunctions";
+import { CreateComment } from "./CreateComment";
 
 export default function Feed() {
   const { posts } = useSelector((state) => state.feed);
@@ -163,21 +164,7 @@ export default function Feed() {
                       </div>
                     </div>
                     <hr />
-                    <div className="p-2 row">
-                      <div className="col-md-2">
-                        <img
-                          src={post.user.avatar}
-                          alt=""
-                          width="45"
-                          height="45"
-                          className="rounded-circle"
-                          style={{ marginRight: "3%" }}
-                        />
-                      </div>
-                      <div className="col-md-9">
-                        <input type="text" className="form-control" />
-                      </div>
-                    </div>
+                    <CreateComment post={post} />
                   </div>
                 </div>
               ))}
