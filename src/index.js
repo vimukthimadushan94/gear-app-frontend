@@ -2,6 +2,7 @@ import React, { StrictMode } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import ReactDOM from "react-dom/client";
 import "./assets/css/styles.min.css";
+import "./assets/css/custom.css";
 import { Provider } from "react-redux";
 import {
   Route,
