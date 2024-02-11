@@ -53,7 +53,7 @@ export default function Feed() {
   useEffect(() => {
     dispatch(getPosts());
     setPostList(posts);
-  }, [dispatch, posts]);
+  }, [dispatch]);
 
   return (
     <>

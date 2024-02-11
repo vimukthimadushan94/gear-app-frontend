@@ -44,3 +44,15 @@ export async function createComment(data, post) {
 
   return response;
 }
+
+export async function getComments(postId) {
+  const response = await fetch(`http://localhost:8080/api/comment/${postId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  return data;
+}
