@@ -1,4 +1,3 @@
-import logo from "../../assets/images/logos/logo.png";
 export function Comments({ comments }) {
   return (
     <>
@@ -7,21 +6,20 @@ export function Comments({ comments }) {
           <>
             <div key={index} className="p-2 row">
               <div className="col-md-2">
-                <img
-                  src={logo}
-                  alt=""
-                  width="45"
-                  height="45"
-                  className="rounded-circle"
-                />
+                {comment.user && (
+                  <img
+                    src={comment.user.avatar}
+                    alt=""
+                    width="45"
+                    height="45"
+                    className="rounded-circle"
+                  />
+                )}
               </div>
               <div className="col-md-10">
-                <input
-                  type="text"
-                  value={comment.comment}
-                  className="form-control"
-                  disabled
-                />
+                <textarea className="form-control" disabled>
+                  {comment.comment}
+                </textarea>
               </div>
             </div>
           </>
