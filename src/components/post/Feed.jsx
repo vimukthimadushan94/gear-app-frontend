@@ -67,7 +67,9 @@ export default function Feed() {
                   <div className="card-body">
                     <h5 className="card-title">
                       <img
-                        src={post.user.avatar}
+                        src={
+                          process.env.REACT_APP_BACKEND_URL + post.user.avatar
+                        }
                         alt=""
                         width="45"
                         height="45"
@@ -89,7 +91,7 @@ export default function Feed() {
                           }}
                         >
                           <img
-                            src={"http://localhost:8080/" + media.path}
+                            src={process.env.REACT_APP_BACKEND_URL + media.path}
                             className="card-img-top image-container"
                             alt="..."
                             style={{ maxHeight: "inherit" }}

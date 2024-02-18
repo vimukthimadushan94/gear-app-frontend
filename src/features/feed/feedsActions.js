@@ -10,7 +10,10 @@ export const getPosts = createAsyncThunk("auth/getPosts", async () => {
       },
     };
 
-    const response = await axios.get(`http://localhost:8080/api/posts`, config);
+    const response = await axios.get(
+      process.env.REACT_APP_BACKEND_URL + `api/posts`,
+      config
+    );
 
     return response.data;
   } catch (error) {

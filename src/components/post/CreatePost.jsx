@@ -16,14 +16,17 @@ export default function CreatePost() {
   const onCreatePost = async (data) => {
     try {
       setLoding(true);
-      const response = await fetch(`http://localhost:8080/api/posts/create`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        process.env.REACT_APP_BACKEND_URL + `api/posts/create`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (response.ok) {
         setLoding(false);

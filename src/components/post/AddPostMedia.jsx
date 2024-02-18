@@ -22,7 +22,7 @@ export default function AddPostMedia() {
         formData.append("images", file);
       }
       const response = await fetch(
-        `http://localhost:8080/api/media/upload-media/${postId}`,
+        process.env.REACT_APP_BACKEND_URL + `api/media/upload-media/${postId}`,
         {
           method: "POST",
           headers: {

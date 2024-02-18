@@ -50,7 +50,8 @@ const authSlice = createSlice({
       })
       .addCase(getAuthUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.avatarUrl = "http://localhost:8080/" + action.payload.avatar;
+        state.avatarUrl =
+          process.env.REACT_APP_BACKEND_URL + action.payload.avatar;
         state.userInfo = action.payload;
       })
       .addCase(getAuthUser.rejected, (state, action) => {

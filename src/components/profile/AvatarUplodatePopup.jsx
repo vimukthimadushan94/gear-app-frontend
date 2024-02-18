@@ -38,7 +38,7 @@ function AvatarUplodatePopup(props) {
         formData.append("avatar", file);
       }
       const response = await fetch(
-        `http://localhost:8080/api/media/update-avatar`,
+        process.env.REACT_APP_BACKEND_URL + "api/media/update-avatar",
         {
           method: "POST",
           headers: {

@@ -13,7 +13,7 @@ export const userLogin = createAsyncThunk(
       };
 
       const response = await axios.post(
-        `http://localhost:8080/auth/login`,
+        process.env.REACT_APP_BACKEND_URL + `auth/login`,
         { email, password },
         config
       );
@@ -43,7 +43,7 @@ export const updateAvatar = createAsyncThunk(
     };
 
     const response = await axios.post(
-      `http://localhost:8080/api/user/update-avatar`,
+      process.env.REACT_APP_BACKEND_URL + `api/user/update-avatar`,
       { avatar: url },
       config
     );
@@ -61,7 +61,7 @@ export const getAuthUser = createAsyncThunk("auth/getAuthUser", async () => {
     };
 
     const response = await axios.get(
-      `http://localhost:8080/api/user/profile`,
+      process.env.REACT_APP_BACKEND_URL + "api/user/profile",
       config
     );
 
