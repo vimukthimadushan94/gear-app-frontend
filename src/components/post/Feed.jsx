@@ -8,6 +8,7 @@ import comment from "./../../assets/images/feed/comment.png";
 import share from "./../../assets/images/feed/share.png";
 import { postLike, postUnlike } from "./utils/postFunctions";
 import { CreateComment } from "./CreateComment";
+import { formatDistanceToNow } from "date-fns";
 
 export default function Feed() {
   const { posts } = useSelector((state) => state.feed);
@@ -78,7 +79,9 @@ export default function Feed() {
                       />
                       {post.user.first_name + " " + post.user.last_name}
                     </h5>
-                    <small>about an hour ago</small>
+                    <small>{`${formatDistanceToNow(new Date(post.createdAt), {
+                      addSuffix: true,
+                    })}`}</small>
                     <p className="card-text">{post.description}</p>
                     <div className="row">
                       {post.medias.map((media, key) => (
