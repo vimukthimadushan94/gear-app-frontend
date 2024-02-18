@@ -84,9 +84,12 @@ export default function Feed() {
                       {post.medias.map((media, key) => (
                         <div
                           id={"post_media_" + key}
-                          className="col-md-6 p-0 m-0"
+                          className={`col-md-6 p-0 m-0 ${
+                            post.medias.length === 1 ? "col-md-12" : "col-md-6"
+                          }`}
                           style={{
-                            maxHeight: "270px",
+                            maxHeight:
+                              post.medias.length === 1 ? "540px" : "270px",
                             backgroundSize: "cover",
                           }}
                         >
@@ -94,7 +97,11 @@ export default function Feed() {
                             src={process.env.REACT_APP_BACKEND_URL + media.path}
                             className="card-img-top image-container"
                             alt="..."
-                            style={{ maxHeight: "inherit" }}
+                            style={{
+                              maxHeight: "300px",
+                              maxWidth: "fit-content",
+                              padding: "2%",
+                            }}
                           />
                         </div>
                       ))}

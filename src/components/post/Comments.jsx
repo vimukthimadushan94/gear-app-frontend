@@ -8,7 +8,9 @@ export function Comments({ comments }) {
               <div className="col-md-2">
                 {comment.user && (
                   <img
-                    src={comment.user.avatar}
+                    src={
+                      process.env.REACT_APP_BACKEND_URL + comment.user.avatar
+                    }
                     alt=""
                     width="45"
                     height="45"

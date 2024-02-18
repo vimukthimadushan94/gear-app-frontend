@@ -47,7 +47,7 @@ export function CreateComment({ post }) {
       <div className="p-2 row">
         <div className="col-md-2">
           <img
-            src={post.user.avatar}
+            src={process.env.REACT_APP_BACKEND_URL + post.user.avatar}
             alt=""
             width="45"
             height="45"
