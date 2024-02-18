@@ -1,8 +1,16 @@
-import FileUploader from "../utils/FileUploader";
+import AvatarUpdate from "./AvatarUpdate";
+import { Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import AvatarUplodatePopup from "./AvatarUplodatePopup";
 import { useSelector } from "react-redux";
 
 export default function MyProfile() {
   const { avatarUrl } = useSelector((state) => state.auth);
+  const [modalShow, setModalShow] = useState(false);
+
+  useEffect(() => {
+    setModalShow(false);
+  }, [avatarUrl]);
 
   return (
     <div className="container-fluid">
@@ -26,9 +34,19 @@ export default function MyProfile() {
                       ""
                     )}
                   </div>
-                  <div className="col-md-8">
-                    <FileUploader />
+                  <div className="col-md-4">
+                    <Button
+                      variant="primary"
+                      onClick={() => setModalShow(true)}
+                    >
+                      Update Profile Picture
+                    </Button>
                   </div>
+                  <AvatarUplodatePopup
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
+                  <AvatarUpdate />
                 </div>
 
                 <form>
