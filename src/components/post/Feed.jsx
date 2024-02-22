@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import RightBar from "../site/RightBar";
-import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "../../features/feed/feedsActions";
+import { useDispatch } from "react-redux";
 import like from "./../../assets/images/feed/thumb-up.png";
 import unlike from "./../../assets/images/feed/thumb-up-filled.png";
 import comment from "./../../assets/images/feed/comment.png";
@@ -11,7 +10,9 @@ import { CreateComment } from "./CreateComment";
 import { formatDistanceToNow } from "date-fns";
 
 export default function Feed() {
-  const { posts } = useSelector((state) => state.feed);
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 2;
 
   const [postList, setPostList] = useState(posts);
 
@@ -49,12 +50,36 @@ export default function Feed() {
     }
   }
 
-  const dispatch = useDispatch();
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    if (scrollY + windowHeight >= documentHeight - 100) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [currentPage]);
 
   useEffect(() => {
-    dispatch(getPosts());
-    setPostList(posts);
-  }, [dispatch]);
+    fetch(
+      `${process.env.REACT_APP_BACKEND_URL}api/posts?page=${currentPage}&limit=${itemsPerPage}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setPosts([...posts, ...data]);
+      });
+  }, [currentPage]);
 
   return (
     <>
@@ -63,7 +88,7 @@ export default function Feed() {
           <div className="card-body">
             <div className="col-md-12">
               <h5 className="card-title fw-semibold mb-4">Feed</h5>
-              {postList.map((post, key) => (
+              {posts.map((post, key) => (
                 <div className="card" id={"post_section" + key}>
                   <div className="card-body">
                     <h5 className="card-title">

@@ -11,7 +11,7 @@ export const getPosts = createAsyncThunk("auth/getPosts", async () => {
     };
 
     const response = await axios.get(
-      process.env.REACT_APP_BACKEND_URL + `api/posts`,
+      process.env.REACT_APP_BACKEND_URL + `api/posts/?page=1&limit=2`,
       config
     );
 
