@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import RightBar from "../site/RightBar";
-import { useDispatch } from "react-redux";
 import like from "./../../assets/images/feed/thumb-up.png";
 import unlike from "./../../assets/images/feed/thumb-up-filled.png";
 import comment from "./../../assets/images/feed/comment.png";
@@ -10,11 +9,10 @@ import { CreateComment } from "./CreateComment";
 import { formatDistanceToNow } from "date-fns";
 
 export default function Feed() {
-  const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 2;
 
-  const [postList, setPostList] = useState(posts);
+  const [postList, setPostList] = useState([]);
 
   async function handleLike(post) {
     console.log("liked..");
@@ -59,6 +57,7 @@ export default function Feed() {
     }
   };
   useEffect(() => {
+    console.log(currentPage);
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -77,7 +76,11 @@ export default function Feed() {
     )
       .then((response) => response.json())
       .then((data) => {
-        setPosts([...posts, ...data]);
+        console.log("before data portion");
+        console.log(data);
+        setPostList((postList) => [...postList, ...data]);
+        console.log("after combined data");
+        console.log(postList);
       });
   }, [currentPage]);
 
@@ -88,7 +91,7 @@ export default function Feed() {
           <div className="card-body">
             <div className="col-md-12">
               <h5 className="card-title fw-semibold mb-4">Feed</h5>
-              {posts.map((post, key) => (
+              {postList.map((post, key) => (
                 <div className="card" id={"post_section" + key}>
                   <div className="card-body">
                     <h5 className="card-title">
