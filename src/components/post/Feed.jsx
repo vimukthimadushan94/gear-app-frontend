@@ -57,7 +57,6 @@ export default function Feed() {
     }
   };
   useEffect(() => {
-    console.log(currentPage);
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -76,11 +75,7 @@ export default function Feed() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log("before data portion");
-        console.log(data);
         setPostList((postList) => [...postList, ...data]);
-        console.log("after combined data");
-        console.log(postList);
       });
   }, [currentPage]);
 
