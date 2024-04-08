@@ -136,6 +136,7 @@ export default function MyProfile() {
                         <label className="form-label">Last Name</label>
                         <input
                           type="text"
+                          className="form-control"
                           defaultValue={userInfo.last_name}
                           {...register("last_name")}
                         />
