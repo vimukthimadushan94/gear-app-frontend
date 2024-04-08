@@ -136,12 +136,8 @@ export default function MyProfile() {
                         <label className="form-label">Last Name</label>
                         <input
                           type="text"
-                          className={
-                            "form-control" +
-                            (errors.last_name ? " is-invalid" : "")
-                          }
                           defaultValue={userInfo.last_name}
-                          {...register("last_name", { required: true })}
+                          {...register("last_name")}
                         />
                         {errors.last_name && (
                           <div class="invalid-feedback">
