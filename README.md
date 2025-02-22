@@ -4,7 +4,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Video Resources
 
-### Authentication
 [![Next.js Overview](https://img.youtube.com/vi/_U4alZGZikY/maxresdefault.jpg)](https://www.youtube.com/watch?v=_U4alZGZikY)(https://www.youtube.com/watch?v=_U4alZGZikY "Click to play ▶")
 
 
