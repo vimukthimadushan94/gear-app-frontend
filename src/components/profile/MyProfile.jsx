@@ -5,6 +5,7 @@ import AvatarUplodatePopup from "./AvatarUplodatePopup";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Toast } from "../utils/toastSweetAlert";
+import defaultAvatar from "../../assets/images/profile/avatar-placeholder.png";
 
 export default function MyProfile() {
   const { avatarUrl } = useSelector((state) => state.auth);
@@ -93,7 +94,13 @@ export default function MyProfile() {
                             className="rounded-circle"
                           />
                         ) : (
-                          ""
+                          <img
+                            src="https://ui-avatars.com/api/?name=John+Doe"
+                            alt=""
+                            width="195"
+                            height="195"
+                            className="rounded-circle"
+                          />
                         )}
                       </div>
                       <div className="col-md-4">

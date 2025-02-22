@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import defaultAvatar from "../../assets/images/profile/avatar-placeholder.png";
 
 export function Header() {
   const { avatarUrl } = useSelector((state) => state.auth);
@@ -28,16 +29,13 @@ export function Header() {
             <li className="nav-item dropdown">
               <Link
                 className="nav-link nav-icon-hover"
-                to="{javascript:void(0)}"
-                id="drop2"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                to="/profile"
               >
                 <img
                   src={avatarUrl}
                   alt=""
-                  width="35"
-                  height="35"
+                  width="45"
+                  height="45"
                   className="rounded-circle"
                 />
               </Link>
